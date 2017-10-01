@@ -1,0 +1,28 @@
+### Thermostat Site Map
+- .git
+- app
+  - model (database)
+  - app.rb
+  - views (html / erb)
+    - layout.erb (Template)
+    - index.erb (Root page)
+- public
+  - assets (images, js & styles, Jasmine test)
+    - imgs (images)
+    - js (javascript)
+      - apikey.js ( key)
+      - interface.js (web page interaction)
+      - thermostat.js (Thermostat class definition)
+    - styles (stylesheets)
+      - mystyles
+    - specRunner.html(Jasmine only)
+- spec
+  - spec_helper.rb(rspec)
+  - ThermostatSpec.js (Jasmine)
+  - FeatureTest (rspec)
+- .gitignore
+- config.ru
+- domain_model.md (use case)
+- GemFile (bundle)
+- GemFile.lock
+- sitemap.md
