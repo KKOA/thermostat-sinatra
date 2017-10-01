@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <h1 class="title">Thermostat Controls</h1>
+  <div class="row">
+    <div class="col-md-1 col-lg-2 col-xl-3"></div>
+    <div class="col-md-10 col-lg-8 col-xl-6 thermostat">
+      <div class="row" style="padding:20px;">
+        <section class="output col-sm-6 col-md-6">
+          <div id="err-msg" style="height:60px;">
+            <!-- Cannot set temp below min {10} &#8451; -->
+          </div>
+          <div id="in-display">
+            Indoor : <span id="inTemp">{23}</span> &#8451;</span>
+          </div>
+          <div id="out-display">
+            <span id="city">city</span> : <span id="outTemp">{23}</span> &#8451;
+          </div>
+        </section>
+        <section class="controls col-sm-6 col-md-6">
+          <section class="temperature">
+            <header> Temperature</header>
+            <button id="temp-up" class="btn arrows" title="Up">
+              <!-- up -->
+              <div></div>
+              <!-- <img src='/assets/imgs/up3 (1).png' width="20px";> -->
+            </button>
+            <button id="temp-down" class="btn arrows" title="Down">
+              <div></div>
+              <!-- <img src='/assets/imgs/down3.png' width="20px";> -->
+            </button>
+            <button id="temp-reset" class="btn" title="Reset">
+              Reset
+            </button>
+          </section>
+          <section class="power-saver-mode">
+            <header>Power Saving Mode</header>
+            <button id="psm-on" class="btn">on</button>
+        </section>
+        <section>
+          <!-- <header style="text-align:center">Select your nearest capital city</header> -->
+
+          <div style="width:75%;margin-left:auto;margin-right:auto;">
+            <label for="current-city">Select your nearest capital city</label>
+            <select id="current-city" class="form-control" ></select>
+          </div>
+
+        </section>
+      </div>
+    </div>
+    <div class="col-md-1 col-lg-2 col-xl-3"></div>
+  </div>
+</div>
