@@ -6,7 +6,7 @@
       <div class="row" style="padding:20px;">
         <section class="output col-sm-6 col-md-6">
           <div id="err-msg" style="height:60px;">
-            <!-- Cannot set temp below min {10} &#8451; -->
+            <!-- Error Message Here -->
           </div>
           <div id="in-display">
             Indoor : <span id="inTemp">{23}</span> &#8451;</span>
@@ -19,13 +19,10 @@
           <section class="temperature">
             <header> Temperature</header>
             <button id="temp-up" class="btn arrows" title="Up">
-              <!-- up -->
-              <div></div>
-              <!-- <img src='/assets/imgs/up3 (1).png' width="20px";> -->
+              <div><!-- up arrow --></div>
             </button>
             <button id="temp-down" class="btn arrows" title="Down">
-              <div></div>
-              <!-- <img src='/assets/imgs/down3.png' width="20px";> -->
+              <div><!-- down arrow --></div>
             </button>
             <button id="temp-reset" class="btn" title="Reset">
               Reset
@@ -36,13 +33,10 @@
             <button id="psm-on" class="btn">on</button>
         </section>
         <section>
-          <!-- <header style="text-align:center">Select your nearest capital city</header> -->
-
-          <div style="width:75%;margin-left:auto;margin-right:auto;">
+          <form style="width:75%;margin-left:auto;margin-right:auto;">
             <label for="current-city">Select your nearest capital city</label>
-            <select id="current-city" class="form-control" ></select>
-          </div>
-
+            <select id="current-city" class="form-control" name="x"></select>
+          </form>
         </section>
       </div>
     </div>
