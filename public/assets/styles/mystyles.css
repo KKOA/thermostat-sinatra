@@ -1,0 +1,93 @@
+.thermostat
+{
+  /*background-color:rgb(150,150,150);*/
+  background-color: #595959;
+  border-radius:10px;
+}
+
+.title
+{
+  text-align:center;
+}
+
+/* output */
+.output
+{
+  background-color: rgb(20,110,110);
+  background-color: rgba(20,110,110,0.5);
+  border:1px solid #000;
+  border-radius:10px;
+  color:#fff;
+  text-align:center;
+  text-shadow: 1px 1px 1px #000;
+}
+#in-display, #out-display
+{
+  font-size:40px;
+  padding: 5px;
+  text-align: center;
+}
+
+
+#err-msg
+{
+  color:red;
+  font-size:20px;
+  font-weight:bold;
+  text-align: center;
+}
+
+/* controls */
+.btn
+{
+  box-shadow: 1px 1px 1px #000;
+  display:block;
+  margin:15px auto;
+  padding:5px;
+  /*width:50%;*/
+  width:100px;
+}
+
+.btn:hover
+{
+  background: rgb(119,136,153);
+  box-shadow: -1px -1px 1px #000;
+  color:white;
+  text-decoration: none;
+}
+.controls
+{
+  color:white;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.controls header
+{
+  font-size:30px;
+  text-align:center;
+}
+
+/* Temperature */
+
+/* Power Saver Mode */
+
+#psm-display
+{
+  font-size:20px;
+  text-align:center;
+}
+
+#temp-up div,#temp-down div
+{
+  height:30px;
+}
+
+#temp-up div
+{
+  background: url(../imgs/arrows1.png) 34px 0 no-repeat;
+}
+
+#temp-down div
+{
+  background:url('../imgs/arrows1.png') 34px -32px no-repeat;
+}
