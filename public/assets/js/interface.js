@@ -1,113 +1,5 @@
 $(document).ready(function () {
     var myThermostat = new Thermostat();
-    // console.log(key + 'd');
-    // var appid = '&APPID=7ccc367902b839bf72c41f4b9ad2bcce';
-    // var city = 'London';
-    // var unit = '&units=metric';
-    // var url = 'http://api.openweathermap.org/data/2.5/weather?q=';// + city + appid + unit;
-    // url += city;
-    // url += appid;
-    // url += unit;
-    //
-    // console.log(url);
-    // var x;
-    //  var data = $.get(url, function(response) {
-    //     console.log(response);
-    //     // var dataJson = response.responseJSON['main']['temp'];
-    //     // console.log(temp['main']);
-    //     // console.log(temp['weather'][0]['main']);
-    //     var city = response['name'];
-    //     var temp = Math.floor(response['main']['temp']);
-    //     console.log(city);
-    //     var weather = response['weather'][0]['main'];
-    //     // var msg ="Temp in "+city+ " : "+temp;
-    //     $('#city').text(city);
-    //     $('#outTemp').text(temp);
-    //  });
-
-    function generateCities() {
-      var cities =
-      [
-        "Please select city",
-        "London",
-        "Amsterdam",
-        "Ankara",
-        "Athens",
-        "Paris",
-        "Berlin"
-      ];
-
-      var options = cities.map(function(city)
-      {
-        return "<option value='" + city + "'>" + city + "</option>";
-      });
-
-      $('#current-city').html(options);
-    }
-
-    getWeatherInfo('London', key);
-    generateCities();
-
-    function getWeatherInfo(city, appid) {
-      // console.log(key);
-      if (city === 'Please select city' || city === undefined)
-      {
-        return;
-      }
-      appid = '&APPID=' + appid;
-      //  var appid = '&APPID=7ccc367902b839bf72c41f4b9ad2bcce';
-       var unit = '&units=metric';
-       var urlx = 'http://api.openweathermap.org/data/2.5/weather?q=';// + city + appid + unit;
-       urlx += city;
-       urlx += appid;
-       urlx += unit;
-        // console.log(url);
-      //   $.get(url, function(response) {
-      //     // console.log(response);
-      //     var city = response.name;
-      //     var temp = Math.floor(response['main']['temp']);
-      //     // var weather = response['weather'][0]['main'];
-      //     $('#city').text(city);
-      //     $('#outTemp').text(temp);
-      //  });
-      console.log(urlx);
-      $.ajax({
-        url : urlx,
-        type : "GET",
-        dataType : "jsonp",
-        beforeSend : function () {
-          var output = "<img src='/assets/imgs/loading.gif' height='50px'>";
-          $('#out-display').html(output);
-        },
-        error: function(){
-          $('#err-msg').text('Could not retrieve weather data for city specified');
-        },
-
-        success: function(response){
-          setTimeout(function () {
-            console.log(response);
-            var city = response.name;
-            var temp = Math.floor(response.main.temp);
-            var weather = response.weather[0].main;
-            $('#city').text(city);
-            $('#outTemp').text(temp);
-            var output = "<span id=\"city\">" + city + "</span> :";
-            output += " <span id=\"outTemp\">" + temp + "</span> &#8451;";
-            $('#out-display').html(output);
-          }, 1500);
-        }
-
-      });
-    }
-
-     $( "#current-city" ).change(function() {
-        var city = $('#current-city').val();
-        // console.log(city);
-        // console.log(key);
-        getWeatherInfo(city,key);
-      });
-
-
 
     function colorText ()
     {
@@ -124,24 +16,69 @@ $(document).ready(function () {
       }
     }
 
-    colorText();
+    function getWeatherInfo(city, appid)
+    {
+      console.log(city,appid);
+      if (city === 'Please select city' || city === undefined)
+      {
+        return;
+      }
+      appid = '&APPID=' + appid;
+       var unit = '&units=metric';
+       var urlx = 'http://api.openweathermap.org/data/2.5/weather?q=';
+       urlx += city;
+       urlx += appid;
+       urlx += unit;
+
+      $.ajax({
+        url : urlx,
+        type : "GET",
+        dataType : "jsonp",
+        beforeSend : function () {
+          var output = "<img src='/assets/imgs/loading.gif' height='50px'>";
+          $('#out-display').html(output);
+        },
+        error: function(){
+          $('#err-msg').text('Could not retrieve weather data for city specified');
+          $('#out-display').html('');
+        },
+
+        success: function(response){
+          // setTimeout(function () {
+            console.log(response);
+            var city = response.name;
+            var temp = Math.floor(response.main.temp);
+            var weather = response.weather[0].main;
+            $('#city').text(city);
+            $('#outTemp').text(temp);
+            var output = "<span id=\"city\">" + city + "</span> :";
+            output += " <span id=\"outTemp\">" + temp + "</span> &#8451;";
+            $('#out-display').html(output);
+          // }, 1500);
+        }
+
+      });
+    }
+
+
     $('#inTemp').text(myThermostat.getTemp());
 
-    $( "#temp-up").click(function() {
-      if (myThermostat.isMaxTemp())
-      {
-        $('#err-msg').html("Cannot exceed max temperature");
-      }
-      else
-      {
-        $('#err-msg').html('');
-        myThermostat.raiseTemp();
-        $('#inTemp').text(myThermostat.getTemp());
-      }
-      colorText();
-    });
+      $( "#temp-up").click(function() {
+        if (myThermostat.isMaxTemp())
+        {
+          $('#err-msg').html("Cannot exceed max temperature");
+        }
+        else
+        {
+          $('#err-msg').html('');
+          myThermostat.raiseTemp();
+          $('#inTemp').text(myThermostat.getTemp());
 
-    $( "#temp-down" ).click(function () {
+        }
+        colorText();
+      });
+
+      $( "#temp-down" ).click(function () {
       if(myThermostat._isMinTemp() == false)
       {
         $('#err-msg').html('');
@@ -180,4 +117,49 @@ $(document).ready(function () {
       }
       colorText();
     });
+
+      $( "#current-city" ).change(function() {
+        var city = $('#current-city').val();
+        getWeatherInfo(city,key);
+      });
+
+      $( "#save" ).click(function() {
+        console.log($('#inTemp').text());
+        console.log($('#city').text());
+        $.ajax({
+          url : "/save",
+          type : "post",
+          beforeSend : function () {
+          },
+          data:{ temperature: $('#inTemp').text(),city: $('#city').text()
+          },
+          error: function () {
+            $('#err-msg').text('Could not save data');
+            $('.select-city').html('');
+          },
+          success: function (cities) {
+            $('#err-msg').text('Data Saved');
+          }
+        });
+      });
+
+      $.ajax({
+        url : "/get_data",
+        type : "get",
+        beforeSend : function () {
+        },
+        data:{ temperature: $('#inTemp').text(),city: $('#city').text()
+        },
+        error: function () {
+          $('#err-msg').text('Could not retrieve data');
+          $('.select-city').html('');
+        },
+        success: function (response) {
+          console.log(response);
+          console.log(myThermostat.getTemp());
+          myThermostat.setTemp(response.temperature);
+          console.log(myThermostat.getTemp());
+          $('#inTemp').text(myThermostat.getTemp());
+        }
+      });
 });

@@ -11,6 +11,10 @@ function Thermostat() {
   this.psm = 'on';
 }
 
+Thermostat.prototype.setTemp = function(temperature) {
+  this.temp = temperature
+};
+
 Thermostat.prototype.getTemp = function() {
   return this.temp;
 };

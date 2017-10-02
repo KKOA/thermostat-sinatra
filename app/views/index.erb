@@ -1,3 +1,9 @@
+<style>
+  input[type="text"]
+  {
+    color:black;
+  }
+</style>
 <div class="container-fluid">
   <h1 class="title">Thermostat Controls</h1>
   <div class="row">
@@ -11,7 +17,7 @@
           <div id="in-display">
             Indoor : <span id="inTemp">{23}</span> &#8451;</span>
           </div>
-          <div id="out-display">
+          <div id="out-display" style='min-height: 70px;'>
             <span id="city">city</span> : <span id="outTemp">{23}</span> &#8451;
           </div>
         </section>
@@ -32,12 +38,23 @@
             <header>Power Saving Mode</header>
             <button id="psm-on" class="btn">on</button>
         </section>
-        <section>
-          <form style="width:75%;margin-left:auto;margin-right:auto;">
+        <section >
+          <form class="select-city" style="width:75%;margin-left:auto;margin-right:auto;">
             <label for="current-city">Select your nearest capital city</label>
-            <select id="current-city" class="form-control" name="x"></select>
+            <select id="current-city" class="form-control" name="x">
+              <option value='London'>London</option>
+              <option value='Paris'>Paris</option>
+
+            </select>
           </form>
+
+          <!-- <form action="/save" method="POST">
+            <input type="text" name="city">
+            <input type="text" name="temperature">
+            <input type="submit" name="submit" value="submit" class="btn"> -->
         </section>
+        <button type="button" class="btn" id="save"> Save</button>
+
       </div>
     </div>
     <div class="col-md-1 col-lg-2 col-xl-3"></div>
