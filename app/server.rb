@@ -28,18 +28,36 @@ class Server < Sinatra::Base
   # end
 
   post '/save' do
-    thermostat = Thermostat.get(1)
-    thermostat.temperature = params[:temperature]
-    thermostat.city = params[:city]
-    thermostat.save
-    puts thermostat
+
+
+    if(Thermostat.get(1).nil?)
+      Thermostat.create(:temperature => params[:temperature], :city => params[:city])
+    else
+      @thermostat = Thermostat.get(1)
+      @thermostat.temperature = params[:temperature]
+      @thermostat.city = params[:city]
+      @thermostat.save
+    end
+
+  end
+
+  get '/x' do
+    puts Thermostat.get(1).nil?
+    # @thermostat.count.zero?
+    # [].zer
   end
 
   get '/get_data' do
 
     @thermostat = Thermostat.get(1)
+
     content_type :json
-    {:temperature => @thermostat.temperature , :city => @thermostat.city}.to_json
+    if(Thermostat.get(1).nil?)
+      return {:temperature => '' , :city => ''}.to_json
+    else
+      @thermostat = Thermostat.get(1)
+      {:temperature => @thermostat.temperature , :city => @thermostat.city}.to_json
+    end
   end
 
   run! if app_file == $PROGRAM_NAME

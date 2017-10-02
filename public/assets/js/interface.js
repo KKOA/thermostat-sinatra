@@ -126,21 +126,28 @@ $(document).ready(function () {
       $( "#save" ).click(function() {
         console.log($('#inTemp').text());
         console.log($('#city').text());
-        $.ajax({
-          url : "/save",
-          type : "post",
-          beforeSend : function () {
-          },
-          data:{ temperature: $('#inTemp').text(),city: $('#city').text()
-          },
-          error: function () {
-            $('#err-msg').text('Could not save data');
-            $('.select-city').html('');
-          },
-          success: function (cities) {
-            $('#err-msg').text('Data Saved');
-          }
-        });
+        if ($('#inTemp').text()== '' || $('#city').text() == '')
+        {
+          $('#err-msg').text('City and indoor Temp must not be empty');
+        }
+        else {
+          $('#err-msg').text('');
+          $.ajax({
+            url : "/save",
+            type : "post",
+            beforeSend : function () {
+            },
+            data:{ temperature: $('#inTemp').text(),city: $('#city').text()
+            },
+            error: function () {
+              $('#err-msg').text('Could not save data');
+              $('.select-city').html('');
+            },
+            success: function (cities) {
+              $('#err-msg').text('Data Saved');
+            }
+          });
+        }
       });
 
       $.ajax({
@@ -157,9 +164,15 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           console.log(myThermostat.getTemp());
+          if(response.temperature == '' || response.city == '')
+          {
+            return;
+          }
           myThermostat.setTemp(response.temperature);
           console.log(myThermostat.getTemp());
           $('#inTemp').text(myThermostat.getTemp());
+          getWeatherInfo(response.city, key);
+          colorText();
         }
       });
 });

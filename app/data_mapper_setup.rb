@@ -11,4 +11,5 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || local_source)
 DataMapper.finalize
 # checks the models for validity and initializes all properties associated with relationships
 DataMapper.auto_upgrade!
+# DataMapper.auto_migrate!
 # build any new columns or tables we added
