@@ -1,6 +1,4 @@
 /*jshint esversion: 6 */
-
-
 const DEFAULT_TEMP = 20;
 const MIN_TEMP = 10;
 const MAX_TEMP = 32;
@@ -8,11 +6,11 @@ const MAX_TEMP_PSM_ON = 25;
 
 function Thermostat() {
   this.temp = DEFAULT_TEMP;
-  this.psm = 'on';
+  this.psm = 'On';
 }
 
 Thermostat.prototype.setTemp = function(temperature) {
-  this.temp = temperature
+  this.temp = temperature;
 };
 
 Thermostat.prototype.getTemp = function() {
@@ -35,7 +33,7 @@ Thermostat.prototype.isMaxTemp = function() {
     return this.getTemp() === MAX_TEMP;
   }
   return this.getTemp() === MAX_TEMP_PSM_ON;
-}
+};
 
 
 Thermostat.prototype.lowerTemp = function() {
@@ -57,24 +55,25 @@ Thermostat.prototype.getPSM = function() {
 Thermostat.prototype.turnOffPSM = function() {
   if(this._isPSMOn() === true)
   {
-    this.psm = 'off';
+    this.psm = 'Off';
   }
 };
 
 Thermostat.prototype._isPSMOn = function() {
-  return this.psm ==='on';
+  return this.psm ==='On';
 };
 
 Thermostat.prototype.turnOnPSM = function() {
   if(this._isPSMOn() === false )
   {
-    this.psm = 'on';
+    this.psm = 'On';
     if(this.temp > MAX_TEMP_PSM_ON)
     {
-      this.temp = MAX_TEMP_PSM_ON
+      this.temp = MAX_TEMP_PSM_ON;
     }
   }
 };
+
 
 Thermostat.prototype.getEnergyUsage = function() {
   temp = this.temp;
