@@ -1,61 +1,88 @@
-<style>
-  input[type="text"]
-  {
-    color:black;
-  }
-</style>
 <div class="container-fluid">
   <h1 class="title">Thermostat Controls</h1>
   <div class="row">
-    <div class="col-md-1 col-lg-2 col-xl-3"></div>
-    <div class="col-md-10 col-lg-8 col-xl-6 thermostat">
+    <div class="col-sm-1 col-md-2 col-lg-3"></div>
+    <div class="col-sm-10 col-md-8 col-lg-6 thermostat">
+    <!-- <div class="col-md-10 col-lg-8 col-xl-6 thermostat"> -->
       <div class="row" style="padding:20px;">
-        <section class="output col-sm-6 col-md-6">
-          <div id="err-msg" style="height:60px;">
+        <section class="output col-sm-6">
+          <div id="msg">
             <!-- Error Message Here -->
           </div>
-          <div id="in-display">
-            Indoor : <span id="inTemp"><!--{23}--></span> &#8451;</span>
+          <div class="psm-status">
+            Power Saver Mode :
+            <span id="psm-mode">On<!-- power saving mode status here --></span>
           </div>
-          <div id="out-display" style='min-height: 70px;'>
-            <span id="city"><!--city--></span> : <span id="outTemp"><!--{23}--></span> &#8451;
+          <div class="row">
+          <div id="in-display" class="col-xs-6">
+            Indoor<br><span id="inTemp"><!--{23}--></span> &#8451;</span>
           </div>
+          <div id="out-display" style='min-height: 70px;' class="col-xs-6 ">
+            <span id="city"><!--city--></span><br><span id="outTemp"><!--{23}--></span> &#8451;
+          </div>
+        </div>
         </section>
-        <section class="controls col-sm-6 col-md-6">
+        <section class="controls col-sm-6">
           <section class="temperature">
             <header> Temperature</header>
-            <button id="temp-up" class="btn arrows" title="Up">
-              <div><!-- up arrow --></div>
-            </button>
-            <button id="temp-down" class="btn arrows" title="Down">
-              <div><!-- down arrow --></div>
-            </button>
-            <button id="temp-reset" class="btn" title="Reset">
-              Reset
-            </button>
+            <div class="row">
+              <div class="col-xs-4 col-sm-3 col-sm-offset-2">
+                <button id="temp-up" class="btn arrows" title="Up">
+                  <div class="glyphicon glyphicon-chevron-up"><!-- up arrow --></div>
+                </button>
+              </div>
+              <div class="col-xs-4 col-sm-3">
+                <button id="temp-down" class="btn arrows" title="Down">
+                  <div class="glyphicon glyphicon-chevron-down"><!-- down arrow --></div>
+                </button>
+              </div>
+              <div class="col-xs-4 col-sm-3">
+                <button id="temp-reset" class="btn" title="Reset">
+              <!-- Reset -->
+                  <div class="glyphicon glyphicon-repeat"><!-- down arrow --></div>
+                </button>
+              </div>
+            </div>
           </section>
           <section class="power-saver-mode">
             <header>Power Saving Mode</header>
-            <button id="psm-on" class="btn">on</button>
+            <!-- <button id="psm-on" class="btn"> -->
+            <div class="row">
+              <div class="col-xs-offset-2 col-xs-4">
+                <button id="psm-on" class="btn psm-btn">
+                  <!-- on -->
+                  <div class="glyphicon" >On</div>
+                </button>
+              </div>
+              <div class="col-xs-4">
+                <button id="psm-off" class="btn psm-btn">
+                  <!-- on -->
+                  <div class="glyphicon" >Off</div>
+                </button>
+              </div>
+            </div>
         </section>
-        <section >
-          <form class="select-city" style="width:75%;margin-left:auto;margin-right:auto;">
+        <section>
+          <header>Outdoor City</header>
+          <form class="select-city">
             <label for="current-city">Select your nearest capital city</label>
             <select id="current-city" class="form-control" name="x">
               <option value=''>Please Select</option>
-              <option value='London'>London</option>
-              <option value='Paris'>Paris</option>
 
+              <% @cities.each do| city |%>
+
+                <% if city.selected == true %>
+                  <option value="<%= city.name %>" selected><%= city.name %></option>
+                <% else %>
+                  <option value="<%= city.name %>"><%= city.name %></option>
+                <% end %>
+              <% end %>
             </select>
           </form>
-
-          <!-- <form action="/save" method="POST">
-            <input type="text" name="city">
-            <input type="text" name="temperature">
-            <input type="submit" name="submit" value="submit" class="btn"> -->
         </section>
-        <button type="button" class="btn" id="save"> Save</button>
-
+        <button type="button" class="btn" id="save">
+            <div class="glyphicon">Save</div>
+        </button>
       </div>
     </div>
     <div class="col-md-1 col-lg-2 col-xl-3"></div>
