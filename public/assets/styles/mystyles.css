@@ -19,21 +19,33 @@
   color:#fff;
   text-align:center;
   text-shadow: 1px 1px 1px #000;
+  opacity: 0.5;
 }
 #in-display, #out-display
 {
-  font-size:40px;
+  font-size:30px;
   padding: 5px;
   text-align: center;
 }
 
 
-#err-msg
+#msg
 {
-  color:red;
   font-size:20px;
   font-weight:bold;
   text-align: center;
+  padding-top:15px;
+  min-height:60px;
+}
+
+.err
+{
+  color:red;
+}
+
+.confirmation
+{
+  color:#7FFF00;
 }
 
 /* controls */
@@ -54,6 +66,7 @@
   color:white;
   text-decoration: none;
 }
+
 .controls
 {
   color:white;
@@ -64,6 +77,28 @@
 {
   font-size:30px;
   text-align:center;
+}
+.controls button{
+  color:#000;
+  position: relative;
+}
+
+.controls button div{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.controls button div{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+
+}
+
+.controls button:hover{
+  color:#fff;
 }
 
 /* Temperature */
@@ -76,17 +111,80 @@
   text-align:center;
 }
 
+#temp-up,#temp-down,#temp-reset,.psm-btn,#save
+{
+  height:70px;
+  width: 70px;
+  border-radius:50%;
+}
+
 #temp-up div,#temp-down div
 {
-  height:30px;
+  /*height:30px;*/
 }
 
 #temp-up div
 {
-  background: url(../imgs/arrows1.png) 34px 0 no-repeat;
+  /*background: url("../imgs/controls/arrows1.png") 34px 0 no-repeat;*/
+  transform: translate(-50%, -55%);
 }
 
 #temp-down div
 {
-  background:url('../imgs/arrows1.png') 34px -32px no-repeat;
+  /*background:url("../imgs/controls/arrows1.png") 34px -32px no-repeat;*/
+  transform: translate(-50%, -45%);
+}
+
+#temp-reset div
+{
+  transform: translate(-50%, -50%);
+}
+
+.psm-btn div,#save div
+{
+  transform: translate(-50%, -65%);
+  font-size:150%;
+  text-align:center;
+}
+
+.glyphicon {
+    font-size: 170%;
+}
+
+.select-city
+{
+  width:75%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.psm-status
+{
+  font-size:20px;
+}
+
+label,header
+{
+  display:block;
+  text-align:center;
+  letter-spacing: 1.5px;
+  font-size:20px;
+}
+
+@media all and (max-width: 480px) {
+  #in-display, #out-display
+  {
+    font-size:25px;
+  }
+}
+
+button:disabled,
+button:disabled:hover,
+button[disabled],
+button[disabled]:hover
+{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: none;
 }
