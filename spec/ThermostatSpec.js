@@ -57,25 +57,25 @@ describe("Thermostat", function () {
 
   describe("getPSM", function () {
     it("return true by default", function () {
-      expect(myThermostat.getPSM()).toEqual('on');
+      expect(myThermostat.getPSM()).toEqual('On');
     });
   });
 
   describe("turnOffPSM", function () {
     it("return off", function () {
       myThermostat.turnOffPSM();
-      expect(myThermostat.getPSM()).toEqual('off');
+      expect(myThermostat.getPSM()).toEqual('Off');
     });
   });
   describe("turnOnPSM", function () {
     it("return on, on intialize", function () {
-      expect(myThermostat.getPSM()).toEqual('on');
+      expect(myThermostat.getPSM()).toEqual('On');
     });
     describe("turn off and on PSM", function () {
       it("return on", function () {
         myThermostat.turnOffPSM();
         myThermostat.turnOnPSM();
-        expect(myThermostat.getPSM()).toEqual('on');
+        expect(myThermostat.getPSM()).toEqual('On');
       });
     });
     describe("turn off, raise by 7 and on PSM", function () {
