@@ -19,7 +19,8 @@
           </div>
           <div class="row">
             <div id="in-display" class="col-xs-6 temp-display">
-              Indoor<br><span id="inTemp"><!--{23}--></span> &#8451;</span>
+              <div>Indoor</div>
+              <span id="inTemp"><!--{23}--></span> &#8451;</span>
             </div>
             <div id="out-display" class="col-xs-6 temp-display">
               <div id="city"><!--city--></div>
@@ -29,22 +30,22 @@
             </div>
           </div>
         </section>
-        <section class="controls col-sm-offset-2 col-sm-8">
+        <section class="controls col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-9">
           <section class="temperature">
             <header> Temperature</header>
             <div class="row">
               <div class="col-xs-4 col-sm-3 col-sm-offset-2">
-                <button id="temp-up" class="btn arrows" title="Up">
+                <button id="temp-up" class="btn arrows temp-control" title="Up">
                   <div class="glyphicon glyphicon-chevron-up"><!-- up arrow --></div>
                 </button>
               </div>
               <div class="col-xs-4 col-sm-3">
-                <button id="temp-down" class="btn arrows" title="Down">
+                <button id="temp-down" class="btn arrows temp-control" title="Down">
                   <div class="glyphicon glyphicon-chevron-down"><!-- down arrow --></div>
                 </button>
               </div>
               <div class="col-xs-4 col-sm-3">
-                <button id="temp-reset" class="btn" title="Reset">
+                <button id="temp-reset" class="btn temp-control" title="Reset">
               <!-- Reset -->
                   <div class="glyphicon glyphicon-repeat"><!-- down arrow --></div>
                 </button>

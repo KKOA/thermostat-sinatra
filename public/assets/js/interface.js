@@ -58,7 +58,7 @@ $(document).ready(function() {
                 cityhtml = "<div id=\"city\">" + city + "</div>";
                 temphtml = "<span id=\"outTemp\">" + temp + "</span> &#8451;";
                 $('#out-display').append(cityhtml);
-                $('#out-display').append("<img src='"+icon+"'>");
+                $('#out-display').append("<img src='"+icon+"' class='weather'>");
                 $('#out-display').append(temphtml);
 
             }

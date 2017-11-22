@@ -1,34 +1,38 @@
-.thermostat
-{
-  background-color: #595959;
-  border-radius:10px;
-}
-
 .title
 {
   text-align:center;
 }
 
+.thermostat
+{
+  background-color:#666;
+  border-radius:10px;
+  padding: 20px 35px;
+  border: solid 1px #333;
+  box-shadow: 3px 3px 1px #000;
+  margin-bottom:10px;
+}
+
 /* output */
 .output
 {
-  background-color: rgb(20,110,110);
-  background-color: rgba(20,110,110,0.5);
-  border:1px solid #000;
+  background-color: rgb(1, 133, 207);
+  border:2px double #000;
   border-radius:10px;
   color:#fff;
+  opacity: 0.5;
+  padding: 10px 5px;
   text-align:center;
   text-shadow: 1px 1px 1px #000;
-  opacity: 0.5;
 }
-#in-display, #out-display
+
+/* Date & time */
+#datetime
 {
-  font-size:30px;
-  padding: 5px;
-  text-align: center;
+  font-size:20px;
 }
 
-
+/* Error and confirmation Messages */
 #msg
 {
   font-size:20px;
@@ -48,18 +52,60 @@
   color:#7FFF00;
 }
 
+/* Power Saving Mode */
+.psm-status
+{
+  font-size:20px;
+}
+
+/* Temperature display */
+.temp-display
+{
+  font-size:30px;
+  padding: 5px;
+  text-align: center;
+  min-height: 70px;
+}
+
+.weather
+{
+  width:50px;
+  height:50px;
+}
+
 /* controls */
-.btn
+.controls header, .controls label
+{
+  color:#fff;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 1px #000;
+  text-align:center;
+}
+
+.controls header{
+  font-size:30px;
+}
+
+.controls label
+{
+  font-size:20px;
+  display:block;
+}
+
+.controls button
 {
   box-shadow: 1px 1px 1px #000;
   display:block;
   margin:15px auto;
   padding:5px;
-  /*width:50%;*/
-  width:100px;
+  color:#000;
+  position: relative;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
 }
 
-.btn:hover
+.controls button:hover
 {
   background: rgb(119,136,153);
   box-shadow: -1px -1px 1px #000;
@@ -67,117 +113,7 @@
   text-decoration: none;
 }
 
-.controls
-{
-  color:white;
-  text-shadow: 1px 1px 1px #000;
-}
-
-.controls header
-{
-  font-size:30px;
-  text-align:center;
-}
-.controls button{
-  color:#000;
-  position: relative;
-}
-
-.controls button div{
-  position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.controls button div{
-  position: absolute;
-    top: 50%;
-    left: 50%;
-
-}
-
-.controls button:hover{
-  color:#fff;
-}
-
-/* Temperature */
-
-/* Power Saver Mode */
-
-#psm-display
-{
-  font-size:20px;
-  text-align:center;
-}
-
-#temp-up,#temp-down,#temp-reset,.psm-btn,#save
-{
-  height:70px;
-  width: 70px;
-  border-radius:50%;
-}
-
-#temp-up div,#temp-down div
-{
-  /*height:30px;*/
-}
-
-#temp-up div
-{
-  /*background: url("../imgs/controls/arrows1.png") 34px 0 no-repeat;*/
-  transform: translate(-50%, -55%);
-}
-
-#temp-down div
-{
-  /*background:url("../imgs/controls/arrows1.png") 34px -32px no-repeat;*/
-  transform: translate(-50%, -45%);
-}
-
-#temp-reset div
-{
-  transform: translate(-50%, -50%);
-}
-
-.psm-btn div,#save div
-{
-  transform: translate(-50%, -65%);
-  font-size:150%;
-  text-align:center;
-}
-
-.glyphicon {
-    font-size: 170%;
-}
-
-.select-city
-{
-  width:75%;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.psm-status
-{
-  font-size:20px;
-}
-
-label,header
-{
-  display:block;
-  text-align:center;
-  letter-spacing: 1.5px;
-  font-size:20px;
-}
-
-@media all and (max-width: 480px) {
-  #in-display, #out-display
-  {
-    font-size:25px;
-  }
-}
-
+/* Disable button */
 button:disabled,
 button:disabled:hover,
 button[disabled],
@@ -187,4 +123,91 @@ button[disabled]:hover
   background-color: #cccccc;
   color: #666666;
   box-shadow: none;
+}
+
+.controls button div{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 170%;
+}
+
+
+/* Temperature controls */
+
+#temp-up div
+{
+  transform: translate(-50%, -55%);
+}
+
+#temp-down div
+{
+  transform: translate(-50%, -45%);
+}
+
+#temp-reset div
+{
+  transform: translate(-50%, -50%);
+}
+
+/* Power Saver Mode controls */
+
+.psm-btn div,#save div
+{
+  transform: translate(-50%, -65%);
+  /*font-size:150%;*/
+  text-align:center;
+}
+
+
+/* Outdoor City controls*/
+
+.select-city
+{
+  width:75%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media all and (max-width: 480px) {
+
+  .title
+  {
+    font-size:30px;
+  }
+
+  #datetime,.psm-status
+  {
+    font-size:16px;
+  }
+  #msg
+  {
+    font-size:16px;
+    min-height: 48px;
+  }
+
+  #in-display, #out-display
+  {
+    font-size:23px;
+  }
+
+  .controls header
+  {
+    font-size:25px;
+  }
+
+  .controls label
+  {
+    font-size:16px;
+  }
+
+  .controls button
+  {
+    width:60px;
+    height:60px;
+  }
+
+  .controls button div {
+      font-size: 150%;
+  }
 }
