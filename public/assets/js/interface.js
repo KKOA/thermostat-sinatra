@@ -261,7 +261,7 @@ $(document).ready(function() {
                 return;
             }
             // Check temperature does not exceed max temperature
-            if (myThermostat.isMaxTemp)
+            if (myThermostat.isMaxTemp())
             {
               temperature = MAX_TEMP_PSM_ON;
             }
