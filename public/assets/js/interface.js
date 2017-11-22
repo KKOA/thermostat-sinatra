@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 $(document).ready(function() {
     var myThermostat = new Thermostat();
 
@@ -48,15 +50,92 @@ $(document).ready(function() {
                 $('#out-display img').remove();
                 var city = response.name;
                 var temp = Math.floor(response.main.temp);
+                var icon = 'assets/imgs/weather/';
+                icon += response.weather[0].icon;
+                icon += '.png';
+
                 var weather = response.weather[0].main;
-                cityhtml = "<span id=\"city\">" + city + "</span><br>";
+                cityhtml = "<div id=\"city\">" + city + "</div>";
                 temphtml = "<span id=\"outTemp\">" + temp + "</span> &#8451;";
                 $('#out-display').append(cityhtml);
+                $('#out-display').append("<img src='"+icon+"'>");
                 $('#out-display').append(temphtml);
+
             }
 
         });
     }
+
+
+    function getMonthName(monthNo)
+    {
+      var monthNames = [
+        "January", "February", "March",
+         "April", "May", "June",
+         "July", "August", "September",
+        "October", "November", "December"
+      ];
+      return monthNames[monthNo];
+    }
+
+
+    function doubledigit(number)
+    {
+      if(number < 10)
+      {
+         number = '0'+number;
+      }
+      return `${expression}`;
+    }
+
+    function updateClock(now = new Date())
+    {
+      year =  now.getFullYear();
+      month = getMonthName(now.getMonth());
+      day =   now.getDate();
+      hour = now.getHours();
+      minute = now.getMinutes();
+      if(hour < 10)
+      {
+          hour = '0'+ hour;
+      }
+      if(minute < 10)
+      {
+        minute = '0'+ minute;
+      }
+      $('#date').text(day +' '+ month +' '+ year);
+      $('#time').text(hour + ':'+ minute);
+      setTimeout(updateClock, 1000);
+    }
+
+    function updateSelectCity()
+    {
+      $.ajax({
+          url: "/cities",
+          type: "get",
+          beforeSend: function() {},
+          data: {},
+          error: function() {},
+          success: function(cities)
+          {
+              var output = '';
+              for (var key in cities)
+              {
+                if (cities.hasOwnProperty(key))
+                {
+                    output += `<option value=\"${cities[key]['name']}\"`;
+                    if(cities[key]['selected'] === true)
+                    {
+                      output += ' selected';
+                    }
+                    output += `>${cities[key]['name']}</option>`;
+                }
+              }
+              $("#current-city").html(output);
+          }
+      });
+    }
+
 
     $('#inTemp').text(myThermostat.getTemp());
 
@@ -96,72 +175,37 @@ $(document).ready(function() {
     $("#psm-on").click(function()
     {
       clearMsg();
-        if(myThermostat.getPSM()==='Off')
-        {
-          $(this).prop('disabled', true);
-          $('#psm-off').prop('disabled', false);
-          myThermostat.turnOnPSM();
-          console.log(myThermostat);
-          $('#psm-mode').text(myThermostat.getPSM());
-          $('#inTemp').text(myThermostat.getTemp());
-          $('#power-saving-status').text(myThermostat.getPSM());
-        }
-        colorText();
+      if(myThermostat.getPSM()==='Off')
+      {
+        $(this).prop('disabled', true);
+        $('#psm-off').prop('disabled', false);
+        myThermostat.turnOnPSM();
+        $('#psm-mode').text(myThermostat.getPSM());
+        $('#inTemp').text(myThermostat.getTemp());
+        $('#power-saving-status').text(myThermostat.getPSM());
+      }
+      colorText();
     });
-
-
 
     $("#psm-off").click(function()
     {
       clearMsg();
-        console.log(myThermostat.getPSM());
-        if(myThermostat.getPSM()==='On')
-        {
-          $(this).prop('disabled', true);
-          $('#psm-on').prop('disabled', false);
-          myThermostat.turnOffPSM();
-          console.log(myThermostat);
-          $('#psm-mode').text(myThermostat.getPSM());
-          $('#inTemp').text(myThermostat.getTemp());
-          $('#power-saving-status').text(myThermostat.getPSM());
-        }
-        colorText();
+      if(myThermostat.getPSM()==='On')
+      {
+        $(this).prop('disabled', true);
+        $('#psm-on').prop('disabled', false);
+        myThermostat.turnOffPSM();
+        $('#psm-mode').text(myThermostat.getPSM());
+        $('#inTemp').text(myThermostat.getTemp());
+        $('#power-saving-status').text(myThermostat.getPSM());
+      }
+      colorText();
     });
-
-
 
     $("#current-city").change(function() {
         var city = $('#current-city').val();
         getWeatherInfo(city, key);
     });
-
-    function updateSelectCity()
-    {
-      $.ajax({
-          url: "/cities",
-          type: "get",
-          beforeSend: function() {},
-          data: {},
-          error: function() {},
-          success: function(cities)
-          {
-              var output = '';
-              for (var key in cities)
-              {
-                if (cities.hasOwnProperty(key))
-                {
-                    output += `<option value=\"${cities[key]['name']}\"`;
-                    if(cities[key]['selected'] === true)
-                    {
-                      output += ' selected';
-                    }
-                    output += `>${cities[key]['name']}</option>`;
-                }
-              }
-              $("#current-city").html(output);
-          }
-      });
-    }
 
     $("#save").click(function() {
         if ($('#inTemp').text() === '' || $('#city').text() === '') {
@@ -195,6 +239,8 @@ $(document).ready(function() {
     $('#psm-on').prop('disabled', true);
     $('#psm-off').prop('disabled', false);
 
+    updateClock(); // initial call
+
     $.ajax({
         url: "/get_data",
         type: "get",
@@ -204,8 +250,7 @@ $(document).ready(function() {
             city: $('#city').text()
         },
         error: function() {
-            $('#msg').addClass('err');
-            $('#msg').removeClass('confirmation');
+            $('#msg').addClass('err').removeClass('confirmation');
             $('#msg').text('Could not retrieve data');
             $('.select-city').html('');
         },
@@ -225,6 +270,6 @@ $(document).ready(function() {
             getWeatherInfo(response.city, key);
             colorText();
         },
-        timeout: 1500
+        // timeout: 1500
     });
 });
