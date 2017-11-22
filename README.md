@@ -1,5 +1,5 @@
 # Thermostat
-# About program
+
 This program that allow the user to
 - control temperature,
 - switch power saving mode on or off
@@ -12,8 +12,12 @@ This program that allow the user to
 
 The last feature is showing the usage which changes colours relative to the temperature.
 
-# Approach / link to domain models
-# Technologies
+## Screenshot
+![Thermostat](https://github.com/KKOA/thermostat-sinatra/blob/master/ScreenShot.png) 
+
+## Approach
+[domain models](https://github.com/KKOA/thermostat-sinatra/blob/master/domain_model.md])
+## Technologies
 - Vanilla Javascript
 - AJAX
 - JQuery
@@ -24,7 +28,8 @@ The last feature is showing the usage which changes colours relative to the temp
 - postgres
 - shotgun
 
-# How run application
+## How run application
+- Clone or download the repository
 - Install postgres
 - Open terminal/command line and type following
 ```
