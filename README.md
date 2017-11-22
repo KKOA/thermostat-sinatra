@@ -16,7 +16,8 @@ The last feature is showing the usage which changes colours relative to the temp
 ![Thermostat](https://github.com/KKOA/thermostat-sinatra/blob/master/ScreenShot.png) 
 
 ## Approach
-[domain models](https://github.com/KKOA/thermostat-sinatra/blob/master/domain_model.md])
+[domain models](https://github.com/KKOA/thermostat-sinatra/blob/master/domain_model.md)
+
 ## Technologies
 - Vanilla Javascript
 - AJAX
