@@ -38,7 +38,7 @@ psql
 CREATE DATABASE [your_database_name]
 ```
 This will create an empty database
-- Get Apikey from openweather api
+- Get Apikey from [openweather api](http://openweathermap.org/api)
 - Create apike.js in public/assets/js/
 - Open apikey.js and assign your apikey from openweather to key as string
 E.g.
