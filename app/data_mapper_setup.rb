@@ -5,8 +5,16 @@ require_relative 'models/thermostat'
 require_relative 'models/city'
 require_relative 'dbconfig.rb'
 # Specify Database connection
-local_source = "postgres://#{USER}:#{PASS}@#{HOST}/#{DB}"
-DataMapper.setup(:default, local_source)
+#local_source = "postgres://#{USER}:#{PASS}@#{HOST}/#{DB}"
+
+if(ENV['RACK_ENV']=='production')
+    source = ENV['THERMOSTAT_SINATRA_DATABASE_URL']
+else 
+    source = "postgres://#{USER}:#{PASS}@#{HOST}/#{DB}"
+end
+
+DataMapper.setup(:default, source)
+#DataMapper.setup(:default, local_source)
 # DataMapper.setup(:default, ENV['DATABASE_URL'] || local_source)
 
 DataMapper.finalize
@@ -17,3 +25,5 @@ DataMapper.auto_upgrade!
 # build any new columns or tables we added
 
 require_relative 'seeds.rb' # prepoulate database
+
+
