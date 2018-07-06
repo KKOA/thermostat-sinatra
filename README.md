@@ -49,23 +49,29 @@ After adding all the features in the domain model to the thermostat, I proceeded
 - Postgres
 - Shotgun
 
-## How to run the application
-Clone or download the repository
+## Set up Application
 
-Install Postgres
+This installation assumes that following is installed
+- Postgres
+
+```
+git clone https://github.com/KKOA/thermostat-sinatra
+```
 
 Open terminal / command line and type following
+
 ```
 psql
 CREATE DATABASE [your_database_name]
 ```
+
 This will create an empty database.
  
 Get an Apikey from [OpenWeatherMap api](http://openweathermap.org/api).
 
 Create an environmental variable on your machine with the name 'THERMOSTAT_OPEN_WEATHER_MAP_API_KEY' and assign the apikey. 
 
-```
+
 Create a file called 'dbconfig.rb' in 'app' folder & store your database login credentials in this file.
 
 E.g.
@@ -75,6 +81,9 @@ DB = "[database_name]".freeze
 USER = "[user_name]".freeze
 PASS = "[password]".freeze
 ```
+
+## How to run the application
+
 Navigate to the top level of clone/downlaod repository on your machine using the terminal/command line & type following 
 ```
 bundle exec shotgun
