@@ -63,22 +63,17 @@ This will create an empty database.
  
 Get an Apikey from [OpenWeatherMap api](http://openweathermap.org/api).
 
-Create a file called 'apikey.js' in 'public/assets/js' folder.
+Create an environmental variable on your machine with the name 'THERMOSTAT_OPEN_WEATHER_MAP_API_KEY' and assign the apikey. 
 
-Open 'apikey.js' file & assign your apikey from OpenWeatherMap to key as string. 
-
-E.g.
-```
-var key = '[Your_key]';
 ```
 Create a file called 'dbconfig.rb' in 'app' folder & store your database login credentials in this file.
 
 E.g.
 ```
-HOST = [host_name].freeze
+HOST = "[host_name]".freeze
 DB = "[database_name]".freeze
-USER = 'user_name'.freeze
-PASS = '[password]'.freeze
+USER = "[user_name]".freeze
+PASS = "[password]".freeze
 ```
 Navigate to the top level of clone/downlaod repository on your machine using the terminal/command line & type following 
 ```
