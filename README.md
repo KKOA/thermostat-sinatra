@@ -77,7 +77,7 @@ Create a file called 'dbconfig.rb' in 'app' folder & store your database login c
 E.g.
 ```
 HOST = "[host_name]".freeze
-DB = "[database_name]".freeze
+DB = "[your_database_name]".freeze
 USER = "[user_name]".freeze
 PASS = "[password]".freeze
 ```
