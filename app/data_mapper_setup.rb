@@ -6,8 +6,8 @@ require_relative 'models/city'
 require_relative 'dbconfig.rb'
 # Specify Database connection
 local_source = "postgres://#{USER}:#{PASS}@#{HOST}/#{DB}"
-
-DataMapper.setup(:default, ENV['DATABASE_URL'] || local_source)
+DataMapper.setup(:default, local_source)
+# DataMapper.setup(:default, ENV['DATABASE_URL'] || local_source)
 
 DataMapper.finalize
 # checks the models for validity and initializes
